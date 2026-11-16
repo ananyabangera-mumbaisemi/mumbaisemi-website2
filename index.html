@@ -54,10 +54,12 @@
     .mobile-menu.open { display: flex; }
 
     /* Hero */
-    .hero { position: relative; overflow: hidden; background: linear-gradient(to bottom, #F8FAFC 0%, #FFFFFF 32%, #FFFFFF 100%); border-bottom: 1px solid var(--line); padding: 64px 0 72px; }
-    .hero-grid-bg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(ellipse 88% 80% at 62% 40%, black 35%, transparent 100%); mask-image: radial-gradient(ellipse 88% 80% at 62% 40%, black 35%, transparent 100%); }
-    .hero-glow-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 72% 46%, rgba(29, 78, 216, 0.09), rgba(56, 189, 248, 0.045) 36%, transparent 66%); }
-    .hero-cad-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.8; }
+    .hero { position: relative; overflow: hidden; background: linear-gradient(125deg, #F8FAFC 0%, #F4F7FC 48%, #EBF2FE 100%); border-bottom: 1px solid var(--line); padding: 64px 0 72px; }
+    .hero-grid-bg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, rgba(29, 78, 216, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(29, 78, 216, 0.04) 1px, transparent 1px); background-size: 64px 64px; -webkit-mask-image: radial-gradient(ellipse 65% 75% at 76% 48%, black 10%, transparent 72%); mask-image: radial-gradient(ellipse 65% 75% at 76% 48%, black 10%, transparent 72%); }
+    .hero-glow-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 75% 44%, rgba(29, 78, 216, 0.12), rgba(56, 189, 248, 0.06) 34%, transparent 64%); }
+    .hero-media-wrap { position: relative; width: 100%; max-width: 400px; margin: 0 auto; }
+    .hero-media-frame { position: absolute; inset: -12px; border-radius: 22px; border: 1px solid rgba(29, 78, 216, 0.15); background: rgba(255, 255, 255, 0.55); pointer-events: none; }
+    .hero-media-corner { position: absolute; top: -20px; right: -20px; width: 112px; height: 112px; border-radius: 16px; border: 1px solid rgba(56, 189, 248, 0.25); background: rgba(219, 234, 254, 0.4); pointer-events: none; }
     .hero > .wrap { position: relative; }
     .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     .kicker { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.015em; color: var(--slate); margin-bottom: 18px; }
@@ -265,22 +267,6 @@
     <section class="hero">
       <div class="hero-grid-bg" aria-hidden="true"></div>
       <div class="hero-glow-bg" aria-hidden="true"></div>
-      <svg class="hero-cad-svg" viewBox="0 0 1200 560" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g stroke="rgba(29, 78, 216, 0.1)" stroke-width="1">
-          <circle cx="885" cy="245" r="165" stroke-dasharray="4 6" />
-          <circle cx="885" cy="245" r="245" />
-          <circle cx="885" cy="245" r="330" stroke-opacity="0.55" />
-          <line x1="560" y1="245" x2="1200" y2="245" stroke-opacity="0.45" />
-          <line x1="885" y1="0" x2="885" y2="540" stroke-opacity="0.45" />
-          <path d="M645 95 H740 L770 125 H885" stroke-opacity="0.6" />
-          <path d="M685 400 H785 L815 370 H885" stroke-opacity="0.6" />
-        </g>
-        <g stroke="rgba(15, 23, 42, 0.18)" stroke-width="1">
-          <path d="M44 48 H56 M50 42 V54" />
-          <path d="M594 48 H606 M600 42 V54" />
-          <path d="M1144 48 H1156 M1150 42 V54" />
-        </g>
-      </svg>
       <div class="wrap">
         <div class="hero-grid">
           <div style="display:flex;flex-direction:column;justify-content:center;">
@@ -292,13 +278,17 @@
               <a href="#contact" class="hero-link">Partner with our silicon team</a>
             </div>
           </div>
-          <div class="hero-media">
-            <div class="hero-media-box">
-              <img src="assets/images/chip.png" alt="DhruvaPro QFN-32 Multi-GNSS RFIC" />
-            </div>
-            <div class="hero-caption">
-              <span class="mono">DhruvaPro &middot; Chip-Verified Silicon</span>
-              <strong>Multi-GNSS Reconfigurable RFIC &middot; QFN-32</strong>
+          <div class="hero-media-wrap">
+            <div class="hero-media-frame" aria-hidden="true"></div>
+            <div class="hero-media-corner" aria-hidden="true"></div>
+            <div class="hero-media" style="position:relative;">
+              <div class="hero-media-box">
+                <img src="assets/images/chip.png" alt="DhruvaPro QFN-32 Multi-GNSS RFIC" />
+              </div>
+              <div class="hero-caption">
+                <span class="mono">DhruvaPro &middot; Chip-Verified Silicon</span>
+                <strong>Multi-GNSS Reconfigurable RFIC &middot; QFN-32</strong>
+              </div>
             </div>
           </div>
         </div>
