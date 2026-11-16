@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MumbaiSemi | Indigenous RF, Analog &amp; Mixed-Signal Silicon</title>
+  <meta name="description" content="MumbaiSemi is a fabless semiconductor company incubated at SINE, IIT Bombay designing high-performance RF, Analog, Mixed-signal, and Digital ICs including DhruvaPro multi-GNSS RFIC." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-canvas: #F8FAFC;
+      --bg-tinted: #EDF2F8;
+      --bg-white: #FFFFFF;
+      --bg-dark: #0B1220;
+      --bg-bench: #070C17;
+      --ink: #0F172A;
+      --slate: #475569;
+      --muted: #64748B;
+      --line: #CBD5E1;
+      --accent: #1D4ED8;
+      --accent-hover: #1E40AF;
+      --cyan: #38BDF8;
+      --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+      --font-sans: "Public Sans", system-ui, sans-serif;
+      --font-mono: "Public Sans", system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-family: var(--font-sans); color: var(--ink); background: var(--bg-canvas); }
+    body { line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; background: none; border: none; }
+    img { display: block; max-width: 100%; }
+    .mono { font-family: var(--font-sans); font-variant-numeric: tabular-nums; font-weight: 500; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header (3-Zone Contract) */
+    header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .nav-bar { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .brand { display: inline-flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
+    .brand img { height: 28px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 500; color: var(--slate); }
+    .nav-links a { white-space: nowrap; flex-shrink: 0; transition: color .18s ease; }
+    .nav-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border-radius: 8px; font-size: 13.5px; font-weight: 600; transition: background-color .18s ease, border-color .18s ease, color .18s ease; white-space: nowrap; flex-shrink: 0; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-outline { background: #fff; color: var(--ink); border: 1px solid #CBD5E1; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .menu-toggle { display: none; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 8px; align-items: center; justify-content: center; }
+    .mobile-menu { display: none; border-top: 1px solid var(--line); background: #fff; padding: 16px 24px; flex-direction: column; gap: 12px; }
+    .mobile-menu.open { display: flex; }
+
+    /* Hero */
+    .hero { position: relative; overflow: hidden; background: linear-gradient(to bottom, #F8FAFC 0%, #FFFFFF 32%, #FFFFFF 100%); border-bottom: 1px solid var(--line); padding: 64px 0 72px; }
+    .hero-grid-bg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(ellipse 88% 80% at 62% 40%, black 35%, transparent 100%); mask-image: radial-gradient(ellipse 88% 80% at 62% 40%, black 35%, transparent 100%); }
+    .hero-glow-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 72% 46%, rgba(29, 78, 216, 0.09), rgba(56, 189, 248, 0.045) 36%, transparent 66%); }
+    .hero-cad-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.8; }
+    .hero > .wrap { position: relative; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .kicker { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.015em; color: var(--slate); margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(2.2rem, 3.8vw, 3.4rem); line-height: 1.08; font-weight: 700; text-wrap: balance; color: var(--ink); }
+    .hero-sub { margin-top: 22px; font-size: 16.5px; color: var(--slate); max-width: 54ch; }
+    .hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+    .hero-link { font-size: 14px; font-weight: 600; text-decoration: underline; text-decoration-color: #CBD5E1; text-underline-offset: 4px; }
+    .hero-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    .hero-media { width: 100%; max-width: 400px; margin: 0 auto; border-radius: 16px; border: 1px solid rgba(30,41,59,0.85); background: var(--bg-dark); box-shadow: 0 28px 56px -16px rgba(11,18,32,0.28); padding: 20px; display: flex; flex-direction: column; align-items: center; align-self: center; }
+    .hero-media-box { width: 100%; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; background: var(--bg-bench); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; }
+    .hero-media-box img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.01); }
+    .hero-caption { width: 100%; padding-top: 14px; margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.1); color: #fff; }
+    .hero-caption .mono { font-size: 11px; color: var(--cyan); font-weight: 600; }
+    .hero-caption strong { display: block; font-size: 14px; margin-top: 2px; color: #fff; }
+    .metrics-strip { margin-top: 52px; padding-top: 32px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .metric-val { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--ink); }
+    .metric-lbl { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+
+    /* Sections & Subtle Reveal */
+    .section { padding: 84px 0; border-bottom: 1px solid #E2E8F0; }
+    .section-white { background: var(--bg-white); }
+    .section-dark { background: var(--bg-dark); color: #F1F5F9; border-bottom-color: rgba(255,255,255,0.1); }
+    .section-kicker { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.03em; color: var(--accent); margin-bottom: 10px; }
+    .section-dark .section-kicker { color: var(--cyan); }
+    .section-title { font-size: clamp(1.75rem, 3vw, 2.35rem); line-height: 1.15; font-weight: 700; text-wrap: balance; }
+    .section-dark .section-title { color: #FFFFFF; }
+    .reveal-item { opacity: 0; transform: translateY(16px); transition: opacity .45s cubic-bezier(0.16, 1, 0.3, 1), transform .45s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-item.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal-item { opacity: 1; transform: none; transition: none; } }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: start; }
+    .about-body p { font-size: 15.5px; color: #CBD5E1; margin-bottom: 20px; }
+    .about-body strong { color: #FFFFFF; }
+    .mission-box { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); }
+    .mission-box p { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #FFFFFF; line-height: 1.45; margin-bottom: 0; }
+
+    /* Applications Grid with Images */
+    .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 44px; }
+    .bento-card { border: 1px solid var(--line); border-radius: 12px; background: var(--bg-canvas); overflow: hidden; display: flex; flex-direction: column; transition: background-color .18s ease, border-color .18s ease; }
+    .bento-card:hover { background: #fff; border-color: #CBD5E1; }
+    .bento-media { position: relative; aspect-ratio: 4 / 3; background: var(--bg-dark); overflow: hidden; border-bottom: 1px solid var(--line); }
+    .bento-media img { width: 100%; height: 100%; object-fit: cover; }
+    .bento-media-cap { position: absolute; inset: auto 0 0 0; padding: 14px 18px; background: linear-gradient(to top, rgba(11,18,32,0.82), transparent); color: rgba(255,255,255,0.95); font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }
+    .bento-body { padding: 26px; }
+    .bento-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .bento-card p { font-size: 15px; color: var(--slate); max-width: 58ch; }
+
+    /* Dark Architectural DhruvaPro Bench */
+    .bench { background: var(--bg-dark); color: #F8FAFC; padding: 88px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .bench-split { display: grid; grid-template-columns: 7fr 5fr; gap: 48px; align-items: center; }
+    .bench-list { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .bench-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: #E2E8F0; }
+    .bench-list svg { width: 16px; height: 16px; color: var(--cyan); flex-shrink: 0; margin-top: 4px; }
+    .tab-bar { display: inline-flex; flex-wrap: wrap; padding: 4px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); gap: 4px; }
+    .tab-btn { padding: 7px 14px; font-size: 12px; font-weight: 600; color: #CBD5E1; border-radius: 6px; white-space: nowrap; transition: background-color .16s ease, color .16s ease; }
+    .tab-btn:hover { color: #FFFFFF; }
+    .tab-btn.active { background: var(--accent); color: #fff; }
+    .bench-frame { margin-top: 16px; min-height: 330px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-bench); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; overflow: hidden; }
+    .bench-frame img { max-width: 260px; max-height: 260px; width: 100%; height: auto; object-fit: contain; border-radius: 8px; }
+    .bench-specs { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    /* Animated GNSS Spectrum Panel */
+    .spectrum-panel { margin-top: 56px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-bench); border-radius: 12px; padding: 28px; }
+    .spectrum-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .spectrum-scroll { overflow-x: auto; margin-top: 22px; }
+    .spectrum-scroll svg { min-width: 820px; width: 100%; height: auto; }
+    .spectrum-readout { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @keyframes rfSweepPulse {
+      0%, 100% { opacity: 0.72; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.04); }
+    }
+    .rf-lobe-active { transform-box: fill-box; transform-origin: center bottom; animation: rfSweepPulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+    @media (prefers-reduced-motion: reduce) { .rf-lobe-active { animation: none; } }
+
+    /* Founders */
+    .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 44px; }
+    .founder-card { border: 1px solid #E2E8F0; border-radius: 12px; background: var(--bg-canvas); overflow: hidden; display: grid; grid-template-columns: 200px 1fr; }
+    .founder-photo { background: #E2E8F0; min-height: 250px; }
+    .founder-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .founder-info { padding: 26px; display: flex; flex-direction: column; justify-content: space-between; }
+    .founder-meta { margin-top: 20px; padding-top: 14px; border-top: 1px solid #E2E8F0; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+
+    /* Careers */
+    .jobs-list { margin-top: 44px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; background: var(--bg-bench); overflow: hidden; }
+    .job-row { padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); transition: background-color .16s ease; }
+    .job-row:last-child { border-bottom: none; }
+    .job-row:hover { background: rgba(255,255,255,0.03); }
+    .btn-outline-dark { background: rgba(255,255,255,0.04); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.2); }
+    .btn-outline-dark:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* Ecosystem Horizontal Marquee (Pauses on Hover) */
+    .eco-marquee-wrap { overflow: hidden; position: relative; padding: 8px 0; margin-top: 32px; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%); }
+    .eco-marquee-track { display: flex; width: max-content; animation: ecoMarquee 26s linear infinite; will-change: transform; }
+    .eco-marquee-wrap:hover .eco-marquee-track, .eco-marquee-wrap:focus-within .eco-marquee-track { animation-play-state: paused; }
+    @keyframes ecoMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .eco-marquee-track { animation: none; } }
+    .eco-marquee-set { display: flex; gap: 20px; padding-right: 20px; flex-shrink: 0; }
+    .eco-card { width: 210px; flex-shrink: 0; border: 1px solid #E2E8F0; border-radius: 12px; background: var(--bg-canvas); color: var(--ink); padding: 18px; text-align: center; transition: border-color .18s ease, background-color .18s ease; }
+    .eco-card:hover { border-color: var(--accent); background: #fff; }
+    .eco-card strong { color: var(--ink); }
+    .eco-card-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .eco-logo-box { height: 64px; background: #fff; border: 1px solid #F1F5F9; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 8px 12px; margin-bottom: 10px; }
+    .eco-logo-box img { max-height: 46px; object-fit: contain; }
+    .news-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 36px; }
+    .news-follow { font-size: 14px; font-weight: 600; color: var(--cyan); white-space: nowrap; }
+    .news-follow:hover { color: #fff; }
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .news-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; background: var(--bg-bench); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; transition: border-color .18s ease; }
+    .news-card:hover { border-color: rgba(56,189,248,0.6); }
+    .news-thumb { position: relative; aspect-ratio: 4 / 3; width: 100%; background: var(--bg-dark); border-bottom: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
+    .news-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .28s ease; }
+    .news-thumb img.pos-top { object-position: top center; }
+    .news-thumb.contain { background: #fff; padding: 8px; }
+    .news-thumb.contain.dark { background: var(--bg-dark); padding: 14px; }
+    .news-thumb.contain img { object-fit: contain; }
+    .news-card:hover .news-thumb img { transform: scale(1.02); }
+    .news-body { padding: 24px; }
+    .news-body h4 { color: #FFFFFF; transition: color .18s ease; }
+    .news-card:hover .news-body h4 { color: var(--cyan); }
+    .news-body p { color: #CBD5E1; }
+    .news-link-row { padding: 12px 24px 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; font-weight: 600; color: #CBD5E1; transition: color .18s ease; }
+    .news-card:hover .news-link-row { color: var(--cyan); }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: start; }
+    .contact-form { border: 1px solid #E2E8F0; border-radius: 12px; background: var(--bg-canvas); padding: 32px; }
+    .section-dark .contact-form { border-color: rgba(255,255,255,0.1); background: var(--bg-bench); }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px; }
+    .section-dark .field label { color: #CBD5E1; }
+    .field input, .field select, .field textarea { width: 100%; padding: 10px 14px; font: inherit; font-size: 14px; border: 1px solid #CBD5E1; border-radius: 8px; background: #fff; color: var(--ink); }
+    .section-dark .field input, .section-dark .field select, .section-dark .field textarea { border-color: rgba(255,255,255,0.16); background: var(--bg-dark); color: #FFFFFF; }
+    .section-dark .field input::placeholder, .section-dark .field textarea::placeholder { color: #64748B; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(29,78,216,0.12); }
+    .section-dark .field input:focus, .section-dark .field select:focus, .section-dark .field textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(56,189,248,0.18); }
+
+    /* Footer */
+    footer { background: var(--bg-bench); color: #CBD5E1; padding: 56px 0 36px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .footer-grid { display: grid; grid-template-columns: 5fr 2fr 2fr 3fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); align-items: start; }
+    .footer-head-slot { height: 36px; display: flex; align-items: center; margin-bottom: 16px; }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 600; height: 36px; display: flex; align-items: center; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; line-height: 1.6; color: #94A3B8; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { padding-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #94A3B8; }
+
+    /* Overlays */
+    .overlay-backdrop { position: fixed; inset: 0; z-index: 50; background: rgba(2,6,23,0.55); display: none; }
+    .overlay-backdrop.open { display: flex; }
+    .drawer { margin-left: auto; width: 100%; max-width: 640px; height: 100%; background: #fff; overflow-y: auto; display: flex; flex-direction: column; border-left: 1px solid var(--line); }
+    .modal-box { margin: auto; width: 100%; max-width: 520px; background: #fff; border-radius: 12px; border: 1px solid var(--line); overflow: hidden; }
+
+    @media (max-width: 960px) {
+      .founders-grid { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: repeat(2, 1fr); }
+      .founder-card { grid-template-columns: 1fr; }
+      .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+      .spectrum-readout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .hero-grid, .about-grid, .bench-split, .contact-grid, .footer-grid, .bento-grid, .news-grid { grid-template-columns: 1fr; }
+      .hero-cad-svg { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta-desktop { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .job-row { flex-direction: column; align-items: flex-start; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header>
+    <div class="wrap nav-bar">
+      <a href="#" class="brand" aria-label="MumbaiSemi Home">
+        <img src="assets/images/logo.png" alt="MumbaiSemi" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#applications">Applications</a>
+        <a href="#product">DhruvaPro</a>
+        <a href="#founders">Founders</a>
+        <a href="#careers">Careers</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="#contact" class="btn btn-primary nav-cta-desktop">Contact Us</a>
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">&#9776;</button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#applications">Applications</a>
+      <a href="#product">DhruvaPro</a>
+      <a href="#founders">Founders</a>
+      <a href="#careers">Careers</a>
+      <a href="#contact" class="btn btn-primary" style="margin-top:8px;">Contact Us</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="hero-glow-bg" aria-hidden="true"></div>
+      <svg class="hero-cad-svg" viewBox="0 0 1200 560" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g stroke="rgba(29, 78, 216, 0.1)" stroke-width="1">
+          <circle cx="885" cy="245" r="165" stroke-dasharray="4 6" />
+          <circle cx="885" cy="245" r="245" />
+          <circle cx="885" cy="245" r="330" stroke-opacity="0.55" />
+          <line x1="560" y1="245" x2="1200" y2="245" stroke-opacity="0.45" />
+          <line x1="885" y1="0" x2="885" y2="540" stroke-opacity="0.45" />
+          <path d="M645 95 H740 L770 125 H885" stroke-opacity="0.6" />
+          <path d="M685 400 H785 L815 370 H885" stroke-opacity="0.6" />
+        </g>
+        <g stroke="rgba(15, 23, 42, 0.18)" stroke-width="1">
+          <path d="M44 48 H56 M50 42 V54" />
+          <path d="M594 48 H606 M600 42 V54" />
+          <path d="M1144 48 H1156 M1150 42 V54" />
+        </g>
+      </svg>
+      <div class="wrap">
+        <div class="hero-grid">
+          <div style="display:flex;flex-direction:column;justify-content:center;">
+            <p class="kicker">Designed in India &middot; Built for the World &middot; Incubated at SINE, IIT Bombay</p>
+            <h1>High performance chips for advanced technologies</h1>
+            <p class="hero-sub">MumbaiSemi is a fabless semiconductor company designing RF, Analog, Mixed-signal, and Digital ICs for satellite navigation, advanced wireless communications, AI/ML hardware, autonomous vehicles, and low-power IoT.</p>
+            <div class="hero-actions">
+              <a href="#product" class="btn btn-primary">Explore DhruvaPro &rarr;</a>
+              <a href="#contact" class="hero-link">Partner with our silicon team</a>
+            </div>
+          </div>
+          <div class="hero-media">
+            <div class="hero-media-box">
+              <img src="assets/images/chip.png" alt="DhruvaPro QFN-32 Multi-GNSS RFIC" />
+            </div>
+            <div class="hero-caption">
+              <span class="mono">DhruvaPro &middot; Chip-Verified Silicon</span>
+              <strong>Multi-GNSS Reconfigurable RFIC &middot; QFN-32</strong>
+            </div>
+          </div>
+        </div>
+        <div class="metrics-strip">
+          <div><div class="metric-val">Multi-band</div><div class="metric-lbl">GNSS Front-End</div></div>
+          <div><div class="metric-val">1st</div><div class="metric-lbl">Indigenous Reconfigurable RFIC</div></div>
+          <div><div class="metric-val">QFN-32</div><div class="metric-lbl">Chip-Verified Package</div></div>
+          <div><div class="metric-val">SINE &middot; IITB</div><div class="metric-lbl">Incubated Research Spin-Out</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01. ABOUT -->
+    <section class="section section-dark" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <p class="section-kicker">01. About &amp; Mission</p>
+          <h2 class="section-title">Indigenous semiconductor IP from IIT Bombay for a global market</h2>
+        </div>
+        <div class="about-body">
+          <p>Spun out of the <strong>aiCAS Lab</strong> at <strong>IIT Bombay</strong> and incubated at <strong>SINE</strong>, MumbaiSemi is a fabless semiconductor company designing high-performance RF, Analog, Mixed-signal, and Digital ICs for advanced communications, AI/ML hardware, autonomous vehicles, and low-power IoT.</p>
+          <p>Our core strength lies in developing innovative circuits to address the challenges in chip design, from multi-band RF front-ends operating in extreme environments to high-speed PHYs for AI/ML hardware and data centers.</p>
+          <div class="mission-box">
+            <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:8px;">Our Mission</div>
+            <p>We research and innovate to produce disruptive solutions for futuristic challenges to develop high-quality semiconductor chips in India for national and global needs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. APPLICATIONS -->
+    <section class="section section-white" id="applications">
+      <div class="wrap">
+        <div style="max-width:660px;">
+          <p class="section-kicker">02. Applications</p>
+          <h2 class="section-title">Silicon engineered for satellites, vehicles, wireless links, and data centers</h2>
+        </div>
+        <div class="bento-grid">
+          <article class="bento-card">
+            <div class="bento-media">
+              <img src="assets/images/app-navigation.jpg" alt="Cockpit multi-function GPS navigation map and flight instruments" />
+              <div class="bento-media-cap">01 &middot; NavIC &middot; GPS &middot; Galileo &middot; BeiDou</div>
+            </div>
+            <div class="bento-body">
+              <h3>Navigation</h3>
+              <p>Next-gen RF front-ends supporting multi-constellation GNSS signals from NavIC, GPS, Galileo, BeiDou, and GLONASS, including DhruvaPro (silicon-proven GNSS RFIC) and DhruvaUltra (coming soon).</p>
+            </div>
+          </article>
+          <article class="bento-card">
+            <div class="bento-media">
+              <img src="assets/images/app-wireless.jpg" alt="Multi-band cellular and 5G wireless base-station antenna tower" />
+              <div class="bento-media-cap">02 &middot; 5G &middot; Wi-Fi 7 &middot; Bluetooth 5.x</div>
+            </div>
+            <div class="bento-body">
+              <h3>Wireless</h3>
+              <p>Advanced transceivers engineered to support next-generation communication standards such as 5G, Wi-Fi 7, Bluetooth 5.x, and more.</p>
+            </div>
+          </article>
+          <article class="bento-card">
+            <div class="bento-media">
+              <img src="assets/images/app-highspeed.jpg" alt="High-density data center server racks and AI compute hardware aisles" />
+              <div class="bento-media-cap">03 &middot; PCIe &middot; UCIe &middot; AI/ML Hardware</div>
+            </div>
+            <div class="bento-body">
+              <h3>High Speed Communications</h3>
+              <p>Innovative PHYs enabling high-speed communication between chips, suitable for the latest PCIe and UCIe standards to address power and latency issues in AI/ML hardware and data centers.</p>
+            </div>
+          </article>
+          <article class="bento-card">
+            <div class="bento-media">
+              <img src="assets/images/app-automotive.jpg" alt="Modern passenger vehicle parked outside glass-and-steel facility" />
+              <div class="bento-media-cap">04 &middot; ADAS &middot; Autonomous &middot; Connected Sensors</div>
+            </div>
+            <div class="bento-body">
+              <h3>Automotive</h3>
+              <p>High-performance silicon chips for connected cameras, sensor systems, and high-speed connectivity in driver-assisted and autonomous driving systems, even in extreme environments.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. DHRUVAPRO & ANIMATED SPECTRUM -->
+    <section class="bench" id="product">
+      <div class="wrap">
+        <div class="bench-split">
+          <div style="display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <p class="mono" style="font-size:12px;font-weight:500;color:var(--cyan);margin-bottom:10px;">03. Flagship Silicon</p>
+              <h2 style="font-size:clamp(2rem,4vw,3rem);color:#fff;font-weight:700;">DhruvaPro</h2>
+              <p style="margin-top:16px;color:#CBD5E1;font-size:16px;max-width:52ch;">DhruvaPro is India&rsquo;s first fully integrated, indigenous reconfigurable RFIC for multi-constellation navigation across NavIC, GPS, Galileo, BeiDou, and GLONASS, making it a universal solution.</p>
+              <p style="margin-top:12px;color:#94A3B8;font-size:14px;max-width:52ch;">The RFIC is silicon-verified and developed as a production-level IC with ESD protection, on-chip testing, and circuits engineered for excellent performance with low power consumption using patented ideas.</p>
+              <ul class="bench-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Multi-constellation GNSS: NavIC, GPS, Galileo, BeiDou, GLONASS</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Silicon-verified and developed as a production-level IC</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>On-chip ESD protection &amp; built-in self-test (BIST)</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Packaged in QFN-32 for evaluation in real environments</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Circuits capable of operating at extreme temperatures</span></li>
+              </ul>
+            </div>
+            <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+              <button type="button" class="btn btn-primary" id="openDatasheetBtn">Request Datasheet &rarr;</button>
+              <span class="mono" style="font-size:12px;color:#94A3B8;">QFN-32 &middot; Eval Kits Available</span>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div class="tab-bar" role="tablist">
+                <button type="button" class="tab-btn active" data-hw="die">Silicon Package (QFN-32)</button>
+                <button type="button" class="tab-btn" data-hw="eval">Evaluation Board</button>
+              </div>
+            </div>
+            <div class="bench-frame">
+              <img id="hwImage" src="assets/images/chip.png" alt="DhruvaPro QFN-32 Silicon" />
+              <div class="mono" id="hwCaption" style="font-size:12px;color:#94A3B8;margin-top:14px;">DhruvaPro QFN-32 Die &middot; Macro View</div>
+            </div>
+            <div class="bench-specs">
+              <div><div class="mono" style="font-size:12px;color:#94A3B8;">Package</div><div class="mono" style="font-size:14px;font-weight:600;color:#fff;">QFN-32</div></div>
+              <div><div class="mono" style="font-size:12px;color:#94A3B8;">Status</div><div class="mono" style="font-size:14px;font-weight:600;color:var(--cyan);">Chip-Verified</div></div>
+              <div><div class="mono" style="font-size:12px;color:#94A3B8;">Protection</div><div class="mono" style="font-size:14px;font-weight:600;color:#fff;">On-Chip ESD &amp; BIST</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated GNSS Spectrum Visualizer -->
+        <div class="spectrum-panel">
+          <div class="spectrum-head">
+            <div>
+              <p class="mono" style="font-size:12px;font-weight:500;color:var(--cyan);margin-bottom:6px;">Multi-Constellation RF Front-End Spectrum</p>
+              <h3 style="font-size:22px;color:#fff;font-weight:700;">Simultaneous L-Band &amp; S-Band Alignment</h3>
+            </div>
+            <div class="tab-bar" id="constellationTabs">
+              <button type="button" class="tab-btn active" data-const="all">All Bands</button>
+              <button type="button" class="tab-btn" data-const="navic">NavIC</button>
+              <button type="button" class="tab-btn" data-const="gps">GPS</button>
+              <button type="button" class="tab-btn" data-const="galileo">Galileo</button>
+              <button type="button" class="tab-btn" data-const="beidou">BeiDou</button>
+            </div>
+          </div>
+
+          <div class="spectrum-scroll">
+            <svg viewBox="0 0 980 430" id="spectrumSvg" aria-label="Multi-constellation GNSS spectrum alignment">
+              <rect id="scanWindow" x="111" y="16" width="88" height="362" rx="6" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.35)" stroke-width="1" />
+              <!-- Vertical dashed alignment guides -->
+              <line x1="155" y1="24" x2="155" y2="376" stroke="rgba(148,163,184,0.28)" stroke-dasharray="4 4" />
+              <line x1="300" y1="24" x2="300" y2="376" stroke="rgba(148,163,184,0.28)" stroke-dasharray="4 4" />
+              <line x1="445" y1="24" x2="445" y2="376" stroke="rgba(148,163,184,0.28)" stroke-dasharray="4 4" />
+              <line x1="590" y1="24" x2="590" y2="376" stroke="rgba(148,163,184,0.28)" stroke-dasharray="4 4" />
+              <line x1="735" y1="24" x2="735" y2="376" stroke="rgba(148,163,184,0.28)" stroke-dasharray="4 4" />
+              <line x1="895" y1="24" x2="895" y2="376" stroke="rgba(148,163,184,0.28)" stroke-dasharray="4 4" />
+
+              <!-- BeiDou -->
+              <g data-row="beidou">
+                <text x="14" y="76" fill="#F8FAFC" font-size="15" font-weight="700">BeiDou</text>
+                <line x1="84" y1="92" x2="936" y2="92" stroke="#475569" stroke-width="1.25" />
+                <path d="M930 87 L938 92 L930 97" fill="none" stroke="#475569" stroke-width="1.25" />
+                <g data-col="1207">
+                  <path d="M256 92 Q300 50 344 92 Z" fill="#1E3A8A" fill-opacity="0.8" stroke="#60A5FA" />
+                  <path d="M272 92 Q278 71 284 92 Z" fill="#34D399" fill-opacity="0.45" stroke="#6EE7B7" />
+                  <path d="M316 92 Q322 71 328 92 Z" fill="#34D399" fill-opacity="0.45" stroke="#6EE7B7" />
+                  <path d="M286 92 Q300 22 314 92 Z" fill="#34D399" fill-opacity="0.82" stroke="#A7F3D0" />
+                  <text x="324" y="36" fill="#CBD5E1" font-size="11" font-family="Public Sans, system-ui, sans-serif">4 MHz (B2)</text>
+                  <text x="346" y="68" fill="#94A3B8" font-size="11" font-family="Public Sans, system-ui, sans-serif">20 MHz (B2)</text>
+                </g>
+                <g data-col="1561">
+                  <path d="M558 92 Q565 65 572 92 Z" fill="#34D399" fill-opacity="0.45" stroke="#6EE7B7" />
+                  <path d="M608 92 Q615 65 622 92 Z" fill="#34D399" fill-opacity="0.45" stroke="#6EE7B7" />
+                  <path d="M575 92 Q590 22 605 92 Z" fill="#34D399" fill-opacity="0.82" stroke="#A7F3D0" />
+                  <text x="614" y="36" fill="#CBD5E1" font-size="11" font-family="Public Sans, system-ui, sans-serif">4 MHz (B1)</text>
+                </g>
+              </g>
+
+              <!-- Galileo -->
+              <g data-row="galileo">
+                <text x="14" y="170" fill="#F8FAFC" font-size="15" font-weight="700">Galileo</text>
+                <line x1="84" y1="186" x2="936" y2="186" stroke="#475569" stroke-width="1.25" />
+                <path d="M930 181 L938 186 L930 191" fill="none" stroke="#475569" stroke-width="1.25" />
+                <g data-col="1176">
+                  <path d="M111 186 Q155 144 199 186 Z" fill="#4F46E5" fill-opacity="0.7" stroke="#818CF8" />
+                  <text x="175" y="140" fill="#CBD5E1" font-size="11" font-family="Public Sans, system-ui, sans-serif">20 MHz (E5a)</text>
+                </g>
+                <g data-col="1207">
+                  <path d="M256 186 Q300 144 344 186 Z" fill="#4F46E5" fill-opacity="0.7" stroke="#818CF8" />
+                  <text x="326" y="140" fill="#CBD5E1" font-size="11" font-family="Public Sans, system-ui, sans-serif">20 MHz (E5b)</text>
+                </g>
+                <g data-col="1575">
+                  <path d="M718 186 Q726 116 734 186 Z" fill="#818CF8" fill-opacity="0.85" stroke="#C7D2FE" />
+                  <path d="M736 186 Q744 116 752 186 Z" fill="#818CF8" fill-opacity="0.85" stroke="#C7D2FE" />
+                  <text x="758" y="136" fill="#CBD5E1" font-size="11" font-family="Public Sans, system-ui, sans-serif">4 MHz (E1)</text>
+                </g>
+              </g>
+
+              <!-- GPS -->
+              <g data-row="gps">
+                <text x="14" y="264" fill="#F8FAFC" font-size="15" font-weight="700">GPS</text>
+                <line x1="84" y1="280" x2="936" y2="280" stroke="#475569" stroke-width="1.25" />
+                <path d="M930 275 L938 280 L930 285" fill="none" stroke="#475569" stroke-width="1.25" />
+                <g data-col="1176">
+                  <path d="M111 280 Q155 238 199 280 Z" fill="#1D4ED8" fill-opacity="0.75" stroke="#60A5FA" />
+                  <text x="175" y="234" fill="#CBD5E1" font-size="11" font-family="Public Sans, system-ui, sans-serif">20 MHz (L5)</text>
+                </g>
+                <g data-col="1227">
+                  <path d="M401 280 Q445 238 489 280 Z" fill="#1D4ED8" fill-opacity="0.75" stroke="#60A5FA" />
+                  <path d="M429 280 Q433 263 437 280 Z" fill="#93C5FD" fill-opacity="0.65" />
+                  <path d="M453 280 Q457 263 461 280 Z" fill="#93C5FD" fill-opacity="0.65" />
+                  <path d="M438 280 Q445 206 452 280 Z" fill="#60A5FA" fill-opacity="0.9" stroke="#DBEAFE" />
+                  <text x="460" y="222" fill="#CBD5E1" font-size="11" font-family="Public Sans, system-ui, sans-serif">2 MHz (L2)</text>
+                  <text x="486" y="256" fill="#94A3B8" font-size="11" font-family="Public Sans, system-ui, sans-serif">20 MHz (L2)</text>
+                </g>
+                <g data-col="1575">
+                  <path d="M691 280 Q735 238 779 280 Z" fill="#1D4ED8" fill-opacity="0.75" stroke="#60A5FA" />
+                  <path d="M719 280 Q723 263 727 280 Z" fill="#93C5FD" fill-opacity="0.65" />
+                  <path d="M743 280 Q747 263 751 280 Z" fill="#93C5FD" fill-opacity="0.65" />
+                  <path d="M728 280 Q735 206 742 280 Z" fill="#60A5FA" fill-opacity="0.9" stroke="#DBEAFE" />
+                  <text x="750" y="222" fill="#CBD5E1" font-size="11" font-family="Public Sans, system-ui, sans-serif">2 MHz (L1)</text>
+                  <text x="776" y="256" fill="#94A3B8" font-size="11" font-family="Public Sans, system-ui, sans-serif">20 MHz (L1)</text>
+                </g>
+              </g>
+
+              <!-- NavIC -->
+              <g data-row="navic">
+                <text x="14" y="358" fill="#38BDF8" font-size="15" font-weight="700">NavIC</text>
+                <line x1="84" y1="374" x2="936" y2="374" stroke="#475569" stroke-width="1.25" />
+                <path d="M930 369 L938 374 L930 379" fill="none" stroke="#475569" stroke-width="1.25" />
+                <g data-col="1176">
+                  <path d="M102 374 Q115 332 128 374 Z" fill="#0284C7" fill-opacity="0.75" stroke="#38BDF8" />
+                  <path d="M126 374 Q137 338 148 374 Z" fill="#0284C7" fill-opacity="0.75" stroke="#38BDF8" />
+                  <path d="M162 374 Q173 338 184 374 Z" fill="#0284C7" fill-opacity="0.75" stroke="#38BDF8" />
+                  <path d="M182 374 Q195 332 208 374 Z" fill="#0284C7" fill-opacity="0.75" stroke="#38BDF8" />
+                  <path d="M148 374 Q155 302 162 374 Z" fill="#38BDF8" fill-opacity="0.95" stroke="#E0F2FE" />
+                  <text x="169" y="316" fill="#E0F2FE" font-size="11" font-family="Public Sans, system-ui, sans-serif">2 MHz (L5)</text>
+                  <text x="208" y="346" fill="#7DD3FC" font-size="11" font-family="Public Sans, system-ui, sans-serif">24 MHz (L5)</text>
+                </g>
+                <g data-col="2492">
+                  <path d="M842 374 Q855 334 868 374 Z" fill="#0284C7" fill-opacity="0.75" stroke="#38BDF8" />
+                  <path d="M866 374 Q877 340 888 374 Z" fill="#0284C7" fill-opacity="0.75" stroke="#38BDF8" />
+                  <path d="M902 374 Q913 340 924 374 Z" fill="#0284C7" fill-opacity="0.75" stroke="#38BDF8" />
+                  <path d="M922 374 Q935 334 948 374 Z" fill="#0284C7" fill-opacity="0.75" stroke="#38BDF8" />
+                  <path d="M888 374 Q895 304 902 374 Z" fill="#38BDF8" fill-opacity="0.95" stroke="#E0F2FE" />
+                  <text x="908" y="316" fill="#E0F2FE" font-size="11" font-family="Public Sans, system-ui, sans-serif">2 MHz (S)</text>
+                  <text x="782" y="340" fill="#7DD3FC" font-size="11" font-family="Public Sans, system-ui, sans-serif">16.5 MHz (S)</text>
+                </g>
+              </g>
+
+              <!-- Frequency Axis Labels -->
+              <g font-family="Public Sans, system-ui, sans-serif" font-size="12.5" fill="#CBD5E1" text-anchor="middle">
+                <text x="155" y="404" data-freq-pick="1176" style="cursor:pointer;">1176.45</text>
+                <text x="300" y="404" data-freq-pick="1207" style="cursor:pointer;">1207.14</text>
+                <text x="445" y="404" data-freq-pick="1227" style="cursor:pointer;">1227.6</text>
+                <text x="590" y="404" data-freq-pick="1561" style="cursor:pointer;">1561</text>
+                <text x="735" y="404" data-freq-pick="1575" style="cursor:pointer;">1575.42</text>
+                <text x="895" y="404" data-freq-pick="2492" style="cursor:pointer;">2492</text>
+                <text x="956" y="404" text-anchor="end" fill="#94A3B8">f(MHz)</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="spectrum-readout">
+            <div><div class="mono" style="font-size:12px;color:#94A3B8;">Selected Carrier</div><div class="mono" id="specFreqTitle" style="font-size:16px;font-weight:600;color:var(--cyan);margin-top:4px;">1176.45 MHz &middot; L5 / E5a Band</div></div>
+            <div><div class="mono" style="font-size:12px;color:#94A3B8;">Aligned Signals</div><div id="specSignals" style="font-size:14px;font-weight:600;color:#fff;margin-top:4px;">NavIC (L5) &middot; GPS (L5) &middot; Galileo (E5a)</div></div>
+            <div><div class="mono" style="font-size:12px;color:#94A3B8;">DhruvaPro Front-End Note</div><div id="specNote" style="font-size:13.5px;color:#CBD5E1;margin-top:4px;">Shared 1176.45 MHz carrier aligns NavIC L5 (2 MHz / 24 MHz) with GPS L5 (20 MHz) and Galileo E5a (20 MHz).</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. FOUNDERS -->
+    <section class="section section-white" id="founders">
+      <div class="wrap">
+        <p class="section-kicker">04. Leadership &amp; Research Origin</p>
+        <h2 class="section-title">Founded by IIT Bombay semiconductor researchers</h2>
+        <div class="founders-grid">
+          <article class="founder-card">
+            <div class="founder-photo"><img src="assets/images/vijay.jpg" alt="Vijaya Kumar Kanchetla" /></div>
+            <div class="founder-info">
+              <div>
+                <div class="mono" style="font-size:12px;color:var(--accent);margin-bottom:4px;">Co-Founder &middot; Ph.D., IIT Bombay</div>
+                <h3 style="font-size:20px;font-weight:700;">Vijaya Kumar Kanchetla</h3>
+                <p style="margin-top:10px;font-size:14px;color:var(--slate);">Ph.D. from IIT Bombay with expertise across RF, analog, and digital IC design.</p>
+              </div>
+              <div class="founder-meta">
+                <span class="mono">RF Design &middot; Analog IC &middot; Digital IC</span>
+                <span style="display:flex;align-items:center;gap:12px;">
+                  <span class="mono" style="color:var(--ink);font-weight:600;">9 Yrs Research</span>
+                  <a href="https://www.linkedin.com/in/vijay-kumar-kanchetla-58470588/" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;">LinkedIn &#8599;</a>
+                </span>
+              </div>
+            </div>
+          </article>
+          <article class="founder-card">
+            <div class="founder-photo"><img src="assets/images/rajesh.jpg" alt="Rajesh Zele" /></div>
+            <div class="founder-info">
+              <div>
+                <div class="mono" style="font-size:12px;color:var(--accent);margin-bottom:4px;">Co-Founder &middot; Ph.D., Carnegie Mellon Univ., PA, USA</div>
+                <h3 style="font-size:20px;font-weight:700;">Rajesh Zele</h3>
+                <p style="margin-top:10px;font-size:14px;color:var(--slate);">Professor at IIT Bombay with over two decades of industry experience in analog, RF, and mixed-signal IC design.</p>
+              </div>
+              <div class="founder-meta">
+                <span class="mono">Analog IC &middot; RF Systems &middot; Mixed-Signal</span>
+                <span style="display:flex;align-items:center;gap:12px;">
+                  <span class="mono" style="color:var(--ink);font-weight:600;">22+ Yrs Industry</span>
+                  <a href="https://www.linkedin.com/in/rajeshzele" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;">LinkedIn &#8599;</a>
+                </span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. CAREERS -->
+    <section class="section section-dark" id="careers">
+      <div class="wrap">
+        <p class="section-kicker">05. Careers</p>
+        <h2 class="section-title">Build India&rsquo;s next generation of silicon</h2>
+        <div class="jobs-list">
+          <div class="job-row">
+            <div>
+              <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Open Position &middot; Full-time &middot; Powai, Mumbai (SINE, IIT Bombay)</div>
+              <h3 style="font-size:21px;font-weight:700;color:#fff;">Analog Design Engineer</h3>
+              <p style="margin-top:6px;font-size:14px;color:#CBD5E1;max-width:60ch;">Architect and verify precision RF and analog integrated circuits for navigation, wireless, and automotive silicon.</p>
+              <div class="mono" style="font-size:12px;color:#94A3B8;margin-top:8px;">Analog IC Design &middot; RF Circuits &middot; Cadence Virtuoso &middot; Layout</div>
+            </div>
+            <button type="button" class="btn btn-outline-dark" data-job="analog-engineer">View Role Details &rarr;</button>
+          </div>
+          <div class="job-row">
+            <div>
+              <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Internship &middot; 6 / 12 Months &middot; Powai, Mumbai (SINE, IIT Bombay)</div>
+              <h3 style="font-size:21px;font-weight:700;color:#fff;">Analog Design Intern</h3>
+              <p style="margin-top:6px;font-size:14px;color:#CBD5E1;max-width:60ch;">Gain hands-on experience in CMOS analog fundamentals, EDA simulation flows, and layout with potential full-time conversion.</p>
+              <div class="mono" style="font-size:12px;color:#94A3B8;margin-top:8px;">CMOS Analog &middot; EDA Tools &middot; DC/AC/PSS &middot; Analog Layout</div>
+            </div>
+            <button type="button" class="btn btn-outline-dark" data-job="analog-intern">View Role Details &rarr;</button>
+          </div>
+          <div class="job-row">
+            <div>
+              <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Internship &middot; 6 / 12 Months &middot; Powai, Mumbai (SINE, IIT Bombay)</div>
+              <h3 style="font-size:21px;font-weight:700;color:#fff;">Digital ASIC Intern</h3>
+              <p style="margin-top:6px;font-size:14px;color:#CBD5E1;max-width:60ch;">Contribute to RTL development (Verilog/SystemVerilog), FPGA prototyping, and board-level verification with full-time pathway.</p>
+              <div class="mono" style="font-size:12px;color:#94A3B8;margin-top:8px;">RTL (Verilog/SV) &middot; FPGA &middot; Python / MATLAB &middot; Verification</div>
+            </div>
+            <button type="button" class="btn btn-outline-dark" data-job="digital-intern">View Role Details &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. ECOSYSTEM -->
+    <section class="section section-white" id="ecosystem">
+      <div class="wrap">
+        <p class="section-kicker">06. Ecosystem &amp; Dispatches</p>
+        <h2 class="section-title">Backed by India&rsquo;s premier semiconductor &amp; research bodies</h2>
+        <div class="eco-marquee-wrap" aria-label="Ecosystem partners, hover to pause">
+          <div class="eco-marquee-track">
+            <div class="eco-marquee-set">
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/sine.jpg" alt="SINE" /></div><strong>SINE</strong><div class="eco-card-role">Technology Incubator</div></div>
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/iitb.png" alt="IIT Bombay" /></div><strong>IIT Bombay</strong><div class="eco-card-role">aiCAS Lab Origin</div></div>
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/make.png" alt="Make in India" /></div><strong>Make in India</strong><div class="eco-card-role">Indigenous Silicon</div></div>
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/chipin.jpg" alt="ChipIN" /></div><strong>ChipIN</strong><div class="eco-card-role">C2S Ecosystem</div></div>
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/meity.png" alt="MeitY" /></div><strong>MeitY</strong><div class="eco-card-role">Govt. of India</div></div>
+            </div>
+            <div class="eco-marquee-set" aria-hidden="true">
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/sine.jpg" alt="SINE" /></div><strong>SINE</strong><div class="eco-card-role">Technology Incubator</div></div>
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/iitb.png" alt="IIT Bombay" /></div><strong>IIT Bombay</strong><div class="eco-card-role">aiCAS Lab Origin</div></div>
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/make.png" alt="Make in India" /></div><strong>Make in India</strong><div class="eco-card-role">Indigenous Silicon</div></div>
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/chipin.jpg" alt="ChipIN" /></div><strong>ChipIN</strong><div class="eco-card-role">C2S Ecosystem</div></div>
+              <div class="eco-card"><div class="eco-logo-box"><img src="assets/images/meity.png" alt="MeitY" /></div><strong>MeitY</strong><div class="eco-card-role">Govt. of India</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS & UPDATES -->
+    <section class="section section-dark" id="news">
+      <div class="wrap">
+        <div class="news-head">
+          <div>
+            <h3 style="font-size:clamp(1.5rem,2.5vw,1.95rem);font-weight:700;color:#fff;">News &amp; Updates</h3>
+            <p style="font-size:14px;color:#CBD5E1;margin-top:6px;">Milestones, LinkedIn dispatches, and upcoming DhruvaUltra updates. Click any LinkedIn post to read more.</p>
+          </div>
+          <a href="https://www.linkedin.com/company/mumbaisemi" target="_blank" rel="noopener noreferrer" class="news-follow">Follow on LinkedIn &#8599;</a>
+        </div>
+        <div class="news-grid">
+          <a class="news-card" href="https://www.linkedin.com/feed/update/urn:li:activity:7522612110087004160" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="news-thumb">
+                <img src="assets/images/news-inspace.jpg" alt="Selected by IN-SPACe under the Technology Adoption Fund" class="pos-top" />
+              </div>
+              <div class="news-body">
+                <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Funding &amp; Space &middot; LinkedIn Update</div>
+                <h4 style="font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.3;">Selected by IN-SPACe under the Technology Adoption Fund</h4>
+                <p style="font-size:14px;">Selected for project funding support by IN-SPACe under TAF to build next-generation receiver chips for navigation using NavIC and other GNSS constellations.</p>
+              </div>
+            </div>
+            <div class="news-link-row"><span>Read post on LinkedIn</span><span>&#8599;</span></div>
+          </a>
+
+          <a class="news-card" href="https://www.linkedin.com/feed/update/urn:li:activity:7517208968331554816" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="news-thumb">
+                <img src="assets/images/news-techsparks.jpg" alt="Named among YourStory Tech30 startups at TechSparks 2026" class="pos-top" />
+              </div>
+              <div class="news-body">
+                <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Recognition &middot; Bengaluru &middot; 13-15 October 2026</div>
+                <h4 style="font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.3;">Named among YourStory Tech30 startups at TechSparks 2026</h4>
+                <p style="font-size:14px;">Recognized in the Tech30 2026 cohort of 30 promising startups at YourStory TechSparks 2026 in Bengaluru from 13-15 October.</p>
+              </div>
+            </div>
+            <div class="news-link-row"><span>Read post on LinkedIn</span><span>&#8599;</span></div>
+          </a>
+
+          <a class="news-card" href="https://www.linkedin.com/feed/update/urn:li:activity:7508494860471971840" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="news-thumb">
+                <img src="assets/images/news-semicon.jpg" alt="Connecting with the chip ecosystem at SEMICON India 2026" />
+              </div>
+              <div class="news-body">
+                <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Industry Showcase &middot; LinkedIn Update</div>
+                <h4 style="font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.3;">Connecting with the chip ecosystem at SEMICON India 2026</h4>
+                <p style="font-size:14px;">Engaged with semiconductor industry professionals, government stakeholders, professors, and students at SEMICON India 2026.</p>
+              </div>
+            </div>
+            <div class="news-link-row"><span>Read post on LinkedIn</span><span>&#8599;</span></div>
+          </a>
+
+          <a class="news-card" href="https://www.linkedin.com/feed/update/urn:li:activity:7496863166287470592" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="news-thumb contain">
+                <img src="assets/images/news-yourstory.jpg" alt="Featured in YourStory Media on building DhruvaPro" />
+              </div>
+              <div class="news-body">
+                <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Media Feature &middot; YourStory Spotlight</div>
+                <h4 style="font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.3;">Featured in YourStory Media on building DhruvaPro</h4>
+                <p style="font-size:14px;">YourStory Media featured MumbaiSemi and co-founders Dr. Vijay Kumar Kanchetla and Prof. Rajesh Zele, spotlighting DhruvaPro for NavIC, GPS, Galileo, GLONASS, and BeiDou.</p>
+              </div>
+            </div>
+            <div class="news-link-row"><span>Read post on LinkedIn</span><span>&#8599;</span></div>
+          </a>
+
+          <a class="news-card" href="https://www.linkedin.com/feed/update/urn:li:activity:7472301920561377281" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="news-thumb">
+                <img src="assets/images/news-bharatinnovates.gif" alt="Showcasing DhruvaPro at Bharat Innovates 2026" class="pos-top" />
+              </div>
+              <div class="news-body">
+                <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Global Showcase &middot; Nice, France &middot; 14-16 June 2026</div>
+                <h4 style="font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.3;">Showcasing DhruvaPro at Bharat Innovates 2026</h4>
+                <p style="font-size:14px;">Presented at Bharat Innovates 2026 in Nice from 14-16 June 2026, engaging with Prof. Ajay Kumar Sood (PSA), IIT Bombay leadership, and deep-tech delegates.</p>
+              </div>
+            </div>
+            <div class="news-link-row"><span>Read post on LinkedIn</span><span>&#8599;</span></div>
+          </a>
+
+          <article class="news-card">
+            <div>
+              <div class="news-thumb">
+                <img src="assets/images/news-dhruvaultra.jpg" alt="DhruvaUltra multi-constellation satellite navigation" />
+              </div>
+              <div class="news-body">
+                <div class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:6px;">Upcoming RFIC &middot; Coming soon...</div>
+                <h4 style="font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.3;">DhruvaUltra: Next-Generation GNSS RF Front-End</h4>
+                <p style="font-size:14px;">Next-generation RF front-end in development alongside DhruvaPro to support multi-constellation GNSS signals from NavIC, GPS, Galileo, and BeiDou.</p>
+              </div>
+            </div>
+            <div class="news-link-row mono" style="color:#94A3B8;font-weight:400;"><span>Coming soon...</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-white" id="contact" style="border-bottom:none;">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="section-kicker">Get in Touch</p>
+          <h2 class="section-title">Start a conversation with our team</h2>
+          <p style="margin-top:12px;font-size:14.5px;color:var(--slate);">Whether you are evaluating DhruvaPro, exploring custom RF/Analog IC design, or inquiring about research partnerships and careers, reach us directly.</p>
+          <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:16px;font-size:14px;">
+            <div><strong>Email</strong><br/><a href="mailto:support@mumbaisemi.com" style="color:var(--slate);">support@mumbaisemi.com</a></div>
+            <div><strong>Address</strong><br/><span style="color:var(--slate);">MumbaiSemi, SINE, IIT Bombay, Powai, Mumbai - 400076, Maharashtra, India</span></div>
+            <div style="display:flex;gap:20px;font-weight:600;">
+              <a href="https://www.linkedin.com/company/mumbaisemi" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://x.com/MumbaiSemi" target="_blank" rel="noopener">Twitter / X (@MumbaiSemi)</a>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-grid-2">
+            <div class="field" style="margin-bottom:0;"><label for="cfName">Full Name</label><input id="cfName" type="text" required placeholder="Your name" /></div>
+            <div class="field" style="margin-bottom:0;"><label for="cfEmail">Email</label><input id="cfEmail" type="email" required placeholder="you@company.com" /></div>
+          </div>
+          <div class="form-grid-2">
+            <div class="field" style="margin-bottom:0;"><label for="cfCompany">Company / Institute</label><input id="cfCompany" type="text" placeholder="Organization name" /></div>
+            <div class="field" style="margin-bottom:0;"><label for="cfTopic">Topic</label><select id="cfTopic"><option>DhruvaPro / GNSS RFIC</option><option>Custom IC design collaboration</option><option>Research partnership</option><option>Careers</option><option>General inquiry</option></select></div>
+          </div>
+          <div class="field"><label for="cfMsg">Message</label><textarea id="cfMsg" rows="4" required placeholder="Tell us about your project, target bands, or inquiry..."></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;" id="cfSubmit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-head-slot">
+            <img src="assets/images/logo.png" alt="MumbaiSemi" style="height:24px;width:auto;" />
+          </div>
+          <p style="font-size:13.5px;line-height:1.6;color:#94A3B8;max-width:34ch;">A fabless semiconductor company designing high-performance RF, Analog, Mixed-signal, and Digital ICs, built in India for the world.</p>
+        </div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#founders">Founders</a></li><li><a href="#careers">Careers</a></li></ul></div>
+        <div class="footer-col"><h4>Technology</h4><ul><li><a href="#applications">Applications</a></li><li><a href="#product">DhruvaPro</a></li><li><a href="#ecosystem">Ecosystem</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:support@mumbaisemi.com">support@mumbaisemi.com</a></li><li>SINE, IIT Bombay, Powai, Mumbai 400076</li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 MumbaiSemi. All rights reserved.</span>
+        <span>Designed &amp; engineered in Mumbai, India</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JOB DETAIL DRAWER -->
+  <div class="overlay-backdrop" id="jobDrawerBackdrop" role="dialog" aria-modal="true">
+    <div class="drawer" id="jobDrawerBox">
+      <div style="padding:20px 28px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
+        <span class="mono" id="jdMeta" style="font-size:12px;color:var(--muted);"></span>
+        <button type="button" id="closeJobDrawer" style="padding:6px 12px;border:1px solid var(--line);border-radius:6px;font-size:13px;">Close</button>
+      </div>
+      <div style="padding:28px;flex:1;display:flex;flex-direction:column;gap:20px;" id="jdContent"></div>
+      <div style="padding:20px 28px;background:var(--bg-canvas);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span style="font-size:12px;color:var(--muted);">Questions? <a href="mailto:support@mumbaisemi.com" style="color:var(--accent);">support@mumbaisemi.com</a></span>
+        <a href="https://forms.gle/voBxzzPSryjghyCB7" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Apply via Application Form &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATASHEET MODAL -->
+  <div class="overlay-backdrop" id="dsModalBackdrop" role="dialog" aria-modal="true" style="padding:16px;">
+    <div class="modal-box">
+      <div style="padding:20px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
+        <div><div class="mono" style="font-size:12px;color:var(--accent);">DhruvaPro &middot; QFN-32</div><h3 style="font-size:19px;">Request Technical Datasheet</h3></div>
+        <button type="button" id="closeDsModal" style="padding:6px 10px;border:1px solid var(--line);border-radius:6px;">Close</button>
+      </div>
+      <form id="dsForm" style="padding:24px;">
+        <div class="field"><label for="dsName">Full Name</label><input id="dsName" type="text" required placeholder="Your name" /></div>
+        <div class="field"><label for="dsEmail">Work Email</label><input id="dsEmail" type="email" required placeholder="name@organization.com" /></div>
+        <div class="field"><label for="dsOrg">Organization / Lab</label><input id="dsOrg" type="text" placeholder="Company or institute" /></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;" id="dsSubmit">Submit Datasheet Request</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu
+    document.getElementById('menuToggle').addEventListener('click', function () {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+
+    // Hardware Die / Eval switcher
+    document.querySelectorAll('[data-hw]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('[data-hw]').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var isDie = btn.getAttribute('data-hw') === 'die';
+        var img = document.getElementById('hwImage');
+        img.src = isDie ? 'assets/images/chip.png' : 'assets/images/pcb.png';
+        img.style.maxWidth = isDie ? '260px' : '350px';
+        img.style.maxHeight = isDie ? '260px' : '300px';
+        document.getElementById('hwCaption').textContent = isDie
+          ? 'DhruvaPro QFN-32 Die · Macro View'
+          : 'aiCAS Lab Evaluation Board · USB-C & SMA';
+      });
+    });
+
+    // Subtle Scroll Reveal for Section Titles & Cards
+    (function () {
+      var targets = document.querySelectorAll('.section-title, .bento-card, .founder-card, .job-row, .news-card, .spectrum-panel');
+      targets.forEach(function (el) { el.classList.add('reveal-item'); });
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(function (el) { io.observe(el); });
+    })();
+
+    // GNSS Spectrum Explorer + Animated RF Sweep
+    var freqCols = [
+      { id: '1176', x: 155, title: '1176.45 MHz · L5 / E5a Band', signals: 'NavIC (L5) · GPS (L5) · Galileo (E5a)', note: 'Shared 1176.45 MHz carrier aligns NavIC L5 (2 MHz / 24 MHz) with GPS L5 (20 MHz) and Galileo E5a (20 MHz).' },
+      { id: '1207', x: 300, title: '1207.14 MHz · B2 / E5b Band', signals: 'BeiDou (B2) · Galileo (E5b)', note: '1207.14 MHz carrier aligns BeiDou B2 (4 MHz & 20 MHz) with Galileo E5b (20 MHz).' },
+      { id: '1227', x: 445, title: '1227.6 MHz · GPS L2 Band', signals: 'GPS (L2)', note: 'GPS L2 band at 1227.6 MHz spanning 2 MHz and 20 MHz signal bandwidths.' },
+      { id: '1561', x: 590, title: '1561 MHz · BeiDou B1 Band', signals: 'BeiDou (B1)', note: 'BeiDou B1 band centered at 1561 MHz with a 4 MHz signal bandwidth.' },
+      { id: '1575', x: 735, title: '1575.42 MHz · L1 / E1 Band', signals: 'Galileo (E1) · GPS (L1)', note: 'Shared 1575.42 MHz carrier aligns GPS L1 (2 MHz & 20 MHz) with Galileo E1 (4 MHz).' },
+      { id: '2492', x: 895, title: '2492 MHz · NavIC S-Band', signals: 'NavIC (S)', note: 'NavIC S-band centered at 2492 MHz spanning 2 MHz and 16.5 MHz signal bandwidths.' }
+    ];
+    var activeIdx = 0;
+    var activeConst = 'all';
+
+    function applySpectrumState() {
+      var col = freqCols[activeIdx];
+      var scanRect = document.getElementById('scanWindow');
+      scanRect.setAttribute('x', col.x - 44);
+      scanRect.style.display = activeConst === 'all' ? 'block' : 'none';
+      document.getElementById('specFreqTitle').textContent = col.title;
+      document.getElementById('specSignals').textContent = col.signals;
+      document.getElementById('specNote').textContent = col.note;
+      document.querySelectorAll('[data-row]').forEach(function (g) {
+        var r = g.getAttribute('data-row');
+        g.style.opacity = (activeConst === 'all' || activeConst === r) ? '1' : '0.24';
+      });
+      document.querySelectorAll('[data-col]').forEach(function (g) {
+        g.classList.toggle('rf-lobe-active', activeConst === 'all' && g.getAttribute('data-col') === col.id);
+      });
+    }
+    applySpectrumState();
+    setInterval(function () {
+      if (activeConst === 'all') {
+        activeIdx = (activeIdx + 1) % freqCols.length;
+        applySpectrumState();
+      }
+    }, 2800);
+
+    document.querySelectorAll('[data-const]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('[data-const]').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        activeConst = btn.getAttribute('data-const');
+        applySpectrumState();
+      });
+    });
+
+    document.querySelectorAll('[data-freq-pick]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var id = el.getAttribute('data-freq-pick');
+        var idx = freqCols.findIndex(function (c) { return c.id === id; });
+        if (idx >= 0) { activeIdx = idx; applySpectrumState(); }
+      });
+    });
+
+    // Job Drawer
+    var jobData = {
+      'analog-engineer': {
+        meta: 'Open Position · Full-time · In-person, Mumbai',
+        title: 'Analog Design Engineer',
+        overview: 'MumbaiSemi is a next-generation semiconductor chip design start-up spun out of the aiCAS Lab, IIT Bombay. Join our core silicon engineering team full-time to take complex analog and RF blocks from architecture through tape-out and lab characterization.',
+        skills: ['CMOS/MOSFET fundamentals, PVT variation, Op-Amps, LDOs, BGRs, frequency synthesizers, ADC/DAC', 'Cadence Virtuoso, Calibre DRC/LVS/PEX', 'Analog layout: transistor matching & parasitic extraction', 'Scripting: Python / PERL / SKILL'],
+        elig: 'Minimum 2 years of experience in Analog IC design with B.Tech/B.E. or M.Tech/M.E. in Electronics or related discipline.'
+      },
+      'analog-intern': {
+        meta: 'Internship · 6 / 12 Months · In-person, Mumbai',
+        title: 'Analog Design Intern',
+        overview: 'Work alongside IIT Bombay researchers at SINE, IIT Bombay on real tape-out-bound analog and RF circuit blocks with potential full-time conversion based on performance.',
+        skills: ['CMOS Analog circuit fundamentals', 'Working familiarity with EDA tools', 'DC, AC, Transient, and PSS simulations', 'Analog layout principles'],
+        elig: 'M.Tech / M.E. in Electronics, Microelectronics, VLSI, or related fields.'
+      },
+      'digital-intern': {
+        meta: 'Internship · 6 / 12 Months · In-person, Mumbai',
+        title: 'Digital ASIC Intern',
+        overview: 'Build digital control logic, FPGA evaluation interfaces, and mixed-signal verification harnesses supporting silicon bring-up at SINE, IIT Bombay.',
+        skills: ['Digital logic design & RTL (Verilog / SystemVerilog)', 'MATLAB / Python scripting', 'FPGA and microcontroller board development', 'Board-level interfaces (I2C/SPI, ADC/DAC) & verification'],
+        elig: 'M.Tech / M.E. in Electronics, VLSI, Embedded Systems, or related fields.'
+      }
+    };
+    var drawer = document.getElementById('jobDrawerBackdrop');
+    document.querySelectorAll('[data-job]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var j = jobData[btn.getAttribute('data-job')];
+        document.getElementById('jdMeta').textContent = j.meta;
+        document.getElementById('jdContent').innerHTML =
+          '<h2 style="font-size:26px;font-weight:700;">' + j.title + '</h2>' +
+          '<p style="font-size:15px;color:#475569;">' + j.overview + '</p>' +
+          '<div><h4 style="font-size:14px;margin-bottom:8px;">Technical Skills</h4><ul style="padding-left:18px;color:#475569;font-size:14px;line-height:1.8;">' +
+          j.skills.map(function (s) { return '<li>' + s + '</li>'; }).join('') +
+          '</ul></div>' +
+          '<div><h4 style="font-size:14px;margin-bottom:6px;">Eligibility</h4><p style="font-size:14px;color:#475569;">' + j.elig + '</p></div>';
+        drawer.classList.add('open');
+      });
+    });
+    document.getElementById('closeJobDrawer').addEventListener('click', function () { drawer.classList.remove('open'); });
+    drawer.addEventListener('click', function (e) { if (e.target === drawer) drawer.classList.remove('open'); });
+
+    // Datasheet Modal
+    var dsModal = document.getElementById('dsModalBackdrop');
+    document.getElementById('openDatasheetBtn').addEventListener('click', function () { dsModal.classList.add('open'); });
+    document.getElementById('closeDsModal').addEventListener('click', function () { dsModal.classList.remove('open'); });
+    dsModal.addEventListener('click', function (e) { if (e.target === dsModal) dsModal.classList.remove('open'); });
+    document.getElementById('dsForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var b = document.getElementById('dsSubmit');
+      b.textContent = 'Request Logged ✓';
+      setTimeout(function () { dsModal.classList.remove('open'); b.textContent = 'Submit Datasheet Request'; e.target.reset(); }, 1800);
+    });
+
+    // Contact Form
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var b = document.getElementById('cfSubmit');
+      b.textContent = 'Message Sent ✓';
+      b.style.background = '#15803D';
+      setTimeout(function () { b.textContent = 'Send Message'; b.style.background = ''; e.target.reset(); }, 3500);
+    });
+  </script>
+</body>
+</html>
